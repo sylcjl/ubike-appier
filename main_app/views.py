@@ -31,7 +31,7 @@ class Taipei(APIView):
     @property
     def update_data(self):
         print("Updating youbike stations infomations...")
-        update_data
+        update_data.update()
         print("Update finished.")
 
     def get(self, request, *args, **kwargs):
@@ -112,8 +112,8 @@ class Taipei(APIView):
                         and components[-1]['short_name'].startswith(postal_code):
                     self.result['code'] = 0
                     return True  # 0 means ok
-        self.result['code'] = -2
-        return False  # means not in this city
+        self.result['code'] = -2  #-2 means not in this city
+        return False  
 
     def get_station_stats(self, drange, limit):
         sql = """SELECT sno, sna, bemp, ({cons} * acos(cos(radians({begin_lat})) * cos(radians(lat))

@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
+# import urlparse
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,7 +26,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "-p%molrc0z))a7-s8ut9nyssgt)4srj*pm+d)k&))v^noz5isi"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -90,13 +92,43 @@ WSGI_APPLICATION = 'youbike.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ubike',
-        'USER': 'user1',
-        'PASSWORD': 'user',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': 'heroku_d31332b8f476749',
+        'USER': 'b34fae530b0720',
+        'PASSWORD': 'e7db1e20',
+        'HOST': 'us-cdbr-iron-east-03.cleardb.net',
+        # 'PORT': '3306',
     }
 }
+
+# try:
+
+#     # Check to make sure DATABASES is set in settings.py file.
+#     # If not default to {}
+
+#     if 'DATABASES' not in locals():
+#         DATABASES = {}
+
+#     if 'DATABASE_URL' in os.environ:
+#         url = urlparse.urlparse(os.environ['DATABASE_URL'])
+
+#         # Ensure default database exists.
+#         DATABASES['default'] = DATABASES.get('default', {})
+
+#         # Update with environment configuration.
+#         DATABASES['default'].update({
+#             'NAME': url.path[1:],
+#             'USER': url.username,
+#             'PASSWORD': url.password,
+#             'HOST': url.hostname,
+#             'PORT': url.port,
+#         })
+
+
+#         if url.scheme == 'mysql':
+#             DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+# except Exception:
+#     print 'Unexpected error:', sys.exc_info()
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
